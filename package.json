@@ -7,9 +7,10 @@
   "author": "Kirill Neruchev <kirill@neruchev.com>",
   "license": "MIT",
   "dependencies": {
+    "gettext-parser": "^4.0.4",
     "yargs": "^16.2.0"
   },
-  "bin" : {
+  "bin": {
     "po-extract": "src/index.js"
   }
 }
