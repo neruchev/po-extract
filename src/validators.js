@@ -28,3 +28,5 @@ exports.validateDirectory = (dir, name) => {
     );
   }
 };
+
+exports.isPo = (filename) => filename.endsWith('.po');
