@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
+const { watch, existsSync } = require('fs');
 
 const { isPo } = require('./validators');
 
@@ -7,11 +7,11 @@ const lock = {};
 
 module.exports = (callback, { enabled, directory }) => {
   if (enabled) {
-    fs.watch(directory, (_event, filename) => {
+    watch(directory, (_event, filename) => {
       if (
         filename &&
         isPo(filename) &&
-        fs.existsSync(path.join(directory, filename)) &&
+        existsSync(join(directory, filename)) &&
         !lock[filename]
       ) {
         lock[filename] = true;

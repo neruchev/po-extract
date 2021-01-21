@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const { resolve } = require('path');
+const { accessSync, lstatSync, constants } = require('fs');
 
 exports.validateExtension = (ext) => {
   const parts = ext.split('.');
@@ -10,10 +10,10 @@ exports.validateExtension = (ext) => {
 };
 
 exports.validateDirectory = (dir, name) => {
-  const directory = path.resolve(process.cwd(), dir);
+  const directory = resolve(process.cwd(), dir);
 
   try {
-    fs.accessSync(directory, fs.constants.R_OK);
+    accessSync(directory, constants.R_OK);
   } catch (e) {
     throw new Error(
       `Can't resolve the ${name}: '${directory}'.
@@ -21,7 +21,7 @@ exports.validateDirectory = (dir, name) => {
     );
   }
 
-  if (!fs.lstatSync(directory).isDirectory()) {
+  if (!lstatSync(directory).isDirectory()) {
     throw new Error(
       `Can't resolve the ${name}: '${directory}'.
       The specified path exists but is not a directory`
