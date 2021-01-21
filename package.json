@@ -1,0 +1,15 @@
+{
+  "name": "po-extract",
+  "version": "0.0.1",
+  "description": "A CLI tool for creating `react-intl`-compatible dictionaries from `.po`-files",
+  "main": "src",
+  "repository": "git@github.com:neruchev/po-extract.git",
+  "author": "Kirill Neruchev <kirill@neruchev.com>",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  },
+  "bin" : {
+    "po-extract": "src/index.js"
+  }
+}

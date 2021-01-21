@@ -1,6 +1,6 @@
 # po-extract
 
-Creating [react-intl](https://www.npmjs.com/package/react-intl)-compatible dictionaries from `.po`-files.
+A CLI tool for creating [react-intl](https://www.npmjs.com/package/react-intl)-compatible dictionaries from `.po`-files.
 
 ## Installation
 
@@ -16,14 +16,18 @@ Or with npm:
 npm install po-extract --save-dev
 ```
 
+## Usage
+
+See [example](./example).
+
 ## CLI Options
 
-| Option      | Type        | Default              | Description                        |
-|-------------|-------------|----------------------|--------------------------- --------|
-| --targetDir | string      | `./dictionaries`     | Target directory with `.po` files  |
-| --outDir    | string      | `./src/dictionaries` | Save output to the directory       |
-| --outExt    | `.js`/`.ts` | `.ts`                | Output files extensions            |
-| --watch     |             |                      | Run the extractor in watch mode    |
+| Option        | Type    | Default              | Description                       |
+| ------------- | ------- | -------------------- | --------------------------------- |
+| `--targetDir` | string  | `./dictionaries`     | Target directory with `.po` files |
+| `--outDir`    | string  | `./src/dictionaries` | Save output to the directory      |
+| `--outExt`    | string  | `.js`                | Output files extensions           |
+| `--watch`     | boolean | `false`              | Run the extractor in watch mode   |
 
 ## License
 

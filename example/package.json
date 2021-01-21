@@ -1,0 +1,13 @@
+{
+  "name": "po-extract-example",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Kirill Neruchev <kirill@neruchev.com>",
+  "license": "MIT",
+  "scripts": {
+    "po:build": "po-extract"
+  },
+  "dependencies": {
+    "po-extract": "../"
+  }
+}
