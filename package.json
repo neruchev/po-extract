@@ -8,7 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "gettext-parser": "^4.0.4",
-    "yargs": "^16.2.0"
+    "prettier": "^2",
+    "yargs": "^16"
   },
   "bin": {
     "po-extract": "src/index.js"
