@@ -3,19 +3,21 @@ const { watch, existsSync } = require('fs');
 
 const { isPo } = require('./validators');
 
+// ignore twice calls
 const lock = {};
+
+const isAvailable = (directory, filename) =>
+  filename &&
+  !lock[filename] &&
+  isPo(filename) &&
+  existsSync(join(directory, filename));
 
 module.exports = (callback, { enabled, directory }) => {
   if (enabled) {
-    watch(directory, (_event, filename) => {
-      if (
-        filename &&
-        isPo(filename) &&
-        existsSync(join(directory, filename)) &&
-        !lock[filename]
-      ) {
+    watch(directory, async (_event, filename) => {
+      if (isAvailable(directory, filename)) {
         lock[filename] = true;
-        callback(filename);
+        await callback(filename);
 
         setTimeout(() => (lock[filename] = false), 500);
       }

@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const { accessSync, lstatSync, constants } = require('fs');
 
-exports.validateExtension = (ext) => {
+const validateExtension = (ext) => {
   const parts = ext.split('.');
 
   if (parts[0] || !/^[a-zA-Z]*$/.test(parts[1])) {
@@ -9,7 +9,7 @@ exports.validateExtension = (ext) => {
   }
 };
 
-exports.validateDirectory = (dir, name) => {
+const validateDirectory = (dir, name) => {
   const directory = resolve(process.cwd(), dir);
 
   try {
@@ -29,4 +29,10 @@ exports.validateDirectory = (dir, name) => {
   }
 };
 
-exports.isPo = (filename) => filename.endsWith('.po');
+const isPo = (filename) => filename.endsWith('.po');
+
+module.exports = {
+  validateExtension,
+  validateDirectory,
+  isPo,
+};

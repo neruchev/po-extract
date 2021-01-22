@@ -27,6 +27,7 @@ const options = {
 };
 
 const validateArgs = ({ targetDir, outDir, outExt }) => {
+  // Yargs does not support asynchronous checks
   validateDirectory(targetDir, 'targetDir');
   validateDirectory(outDir, 'outDir');
 
@@ -37,7 +38,7 @@ const validateArgs = ({ targetDir, outDir, outExt }) => {
 
 module.exports = yargs
   .options(options)
-  .check(validateArgs)
+  .check(validateArgs, true)
   .version(version)
   .version(false)
   .strict()
