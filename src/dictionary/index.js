@@ -30,30 +30,22 @@ module.exports = async (shortFilename) => {
 
   const partitions = Object.keys(translations);
 
+  const commonOpts = {
+    source: join(targetDir, shortFilename),
+    locale,
+    partitions,
+  };
+
   const toRemove = listing
     .map((item) => item.name.split('.')[0])
     .filter((item) => !partitions.includes(item) && item !== 'index');
 
   const toRender = partitions.map((partition) =>
-    render({
-      locale,
-      partition,
-      source: join(targetDir, shortFilename),
-      strings: translations[partition],
-      allPartitions: partitions,
-    })
+    render({ ...commonOpts, partition, strings: translations[partition] })
   );
 
   if (partitions.find((item) => item === '') === undefined) {
-    toRender.push(
-      render({
-        locale,
-        partition: '',
-        source: join(targetDir, shortFilename),
-        strings: {},
-        allPartitions: partitions,
-      })
-    );
+    toRender.push(render({ ...commonOpts, partition: '', strings: {} }));
   }
 
   const toUpdate = await Promise.all(toRender);
