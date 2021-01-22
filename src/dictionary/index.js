@@ -1,4 +1,5 @@
 const { join } = require('path');
+const { existsSync, promises } = require('fs');
 
 const {
   targetDir,
@@ -11,6 +12,8 @@ const render = require('./render');
 const remove = require('./remove');
 const save = require('./save');
 const readDir = require('../readDir');
+
+const { mkdir } = promises;
 
 const parseLocale = (filename) => filename.split('.')[0].replace(/[^\w]/g, '_');
 
@@ -54,6 +57,10 @@ module.exports = async (shortFilename) => {
   }
 
   const toUpdate = await Promise.all(toRender);
+
+  if (!existsSync(directory)) {
+    await mkdir(directory);
+  }
 
   await Promise.all([
     ...toUpdate.map(({ text, partition }) =>
