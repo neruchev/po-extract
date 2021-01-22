@@ -7,7 +7,7 @@ module.exports = async (filename) => {
   try {
     return po.parse(file).translations;
   } catch (e) {
-    console.error(e);
+    console.error('\x1b[31m%s\x1b[0m', `[${filename}]`, e.message);
     return {};
   }
 };

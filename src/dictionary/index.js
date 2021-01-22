@@ -41,7 +41,7 @@ module.exports = async (shortFilename) => {
     })
   );
 
-  if (!partitions.find((item) => item === '')) {
+  if (partitions.find((item) => item === '') === undefined) {
     toRender.push(
       render({
         locale,
