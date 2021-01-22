@@ -5,7 +5,8 @@
   "author": "Kirill Neruchev <kirill@neruchev.com>",
   "license": "MIT",
   "scripts": {
-    "po:build": "po-extract"
+    "po:build": "po-extract --outExt=.ts",
+    "po:watch": "po-extract --outExt=.ts --watch"
   },
   "dependencies": {
     "po-extract": "../"
