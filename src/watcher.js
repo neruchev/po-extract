@@ -1,21 +1,19 @@
 const { join } = require('path');
 const { watch, existsSync } = require('fs');
 
-const { isPo } = require('./validators');
-
 // ignore twice calls
 const lock = {};
 
-const isAvailable = (directory, filename) =>
+const isAvailable = (directory, filename, checkExtension) =>
   filename &&
   !lock[filename] &&
-  isPo(filename) &&
+  checkExtension(filename) &&
   existsSync(join(directory, filename));
 
-module.exports = (callback, { enabled, directory }) => {
-  if (enabled) {
+module.exports = (callback, { isEnabled, directory, checkExtension }) => {
+  if (isEnabled) {
     watch(directory, async (_event, filename) => {
-      if (isAvailable(directory, filename)) {
+      if (isAvailable(directory, filename, checkExtension)) {
         lock[filename] = true;
         await callback(filename);
 

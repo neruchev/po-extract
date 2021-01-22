@@ -1,4 +1,5 @@
 const yargs = require('yargs');
+const { resolve } = require('path');
 
 const { validateDirectory, validateExtension } = require('./validators');
 const { version } = require('../package.json');
@@ -36,10 +37,18 @@ const validateArgs = ({ targetDir, outDir, outExt }) => {
   return true;
 };
 
-module.exports = yargs
+const { targetDir, outDir, outExt, watch } = yargs
   .options(options)
   .check(validateArgs, true)
   .version(version)
   .version(false)
   .strict()
   .help().argv;
+
+module.exports = {
+  outExt,
+  targetDir,
+  isWatch: watch,
+  targetDirectory: resolve(process.cwd(), targetDir),
+  outputDirectory: resolve(process.cwd(), outDir),
+};
