@@ -10,5 +10,9 @@
   },
   "dependencies": {
     "po-extract": "../"
+  },
+  "engines": {
+    "node": "14.*",
+    "yarn": "1.22.*"
   }
 }
