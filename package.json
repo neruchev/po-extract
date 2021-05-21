@@ -1,6 +1,6 @@
 {
   "name": "po-extract",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI tool for creating `react-intl`-compatible dictionaries from `.po`-files",
   "main": "src",
   "repository": "git@github.com:neruchev/po-extract.git",
