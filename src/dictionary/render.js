@@ -37,7 +37,7 @@ module.exports = async ({ locale, partition, strings, source, partitions }) => {
     const value = strings[key].msgstr[0];
     const withBreak = isWithBreak(partition, i ? keys[i - 1] : undefined, key);
 
-    return `${withBreak ? '\n' : ''}'${key}': '${value.replace('\'', '\\\'')}',`;
+    return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, '\\\'')}',`;
   };
 
   const rendered = keys.map(renderItem).join('\n');
