@@ -225,7 +225,7 @@ object-assign@^4.1.1:
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
 po-extract@../:
-  version "1.0.0"
+  version "1.0.1"
   dependencies:
     gettext-parser "^4.2.0"
     prettier "^2"
