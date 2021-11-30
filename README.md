@@ -28,7 +28,7 @@ npm install po-extract --save-dev
   + "po:watch": "po-extract --watch",
 ```
 
-2. Create `.po`-files ([example](/tree/main/example/dictionaries)). By default, the library looks for the directory `dictionaries` in the root of the project, you can change it, see [CLI Options](#cli-options).
+2. Create `.po`-files ([example](/example/dictionaries)). By default, the library looks for the directory `dictionaries` in the root of the project, you can change it, see [CLI Options](#cli-options).
 
 3. Create target directory. By default, the library uses the `src/dictionaries` directory in the root of the project, you can change it, see [CLI Options](#cli-options).
 
