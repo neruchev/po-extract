@@ -1,8 +1,15 @@
 # po-extract
 
+[![NPM version](https://img.shields.io/npm/v/po-extract.svg?style=flat)](https://www.npmjs.com/package/po-extract)
+![CI workflow](https://github.com/neruchev/po-extract/workflows/CI%20workflow/badge.svg)
+
 A CLI tool for creating [react-intl](https://www.npmjs.com/package/react-intl)-compatible dictionaries from [gettext](https://www.gnu.org/software/gettext/) `.po`-files.
 
 **What for?** Many translators and software translation companies prefer to work with standardized dictionaries in the `.po` format, while developers are more comfortable working with language strings in a JavaScript or TypeScript compatible format.
+
+## Pre requirements
+
+- `node.js`: `>=8.*`
 
 ## Installation
 
