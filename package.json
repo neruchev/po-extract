@@ -1,7 +1,15 @@
 {
   "name": "po-extract",
   "version": "1.0.0",
-  "description": "A CLI tool for creating `react-intl`-compatible dictionaries from `.po`-files",
+  "description": "A CLI tool for creating `react-intl`-compatible dictionaries from gettext `.po`-files",
+  "keywords": [
+    "i18n",
+    "react",
+    "react-intl",
+    "gettext",
+    "po",
+    "extract"
+  ],
   "main": "src",
   "repository": "git@github.com:neruchev/po-extract.git",
   "bugs": {
@@ -9,6 +17,7 @@
   },
   "author": "Kirill Neruchev <kirill@neruchev.com>",
   "license": "MIT",
+  "private": false,
   "dependencies": {
     "gettext-parser": "^4.2.0",
     "prettier": "^2",
