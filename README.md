@@ -2,6 +2,8 @@
 
 A CLI tool for creating [react-intl](https://www.npmjs.com/package/react-intl)-compatible dictionaries from `.po`-files.
 
+**What for?** Many translators and software translation companies prefer to work with standardized dictionaries in the `.po` format, while developers are more comfortable working with language strings in a JavaScript or TypeScript compatible format.
+
 ## Installation
 
 Install it with yarn:
