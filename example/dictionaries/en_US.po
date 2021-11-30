@@ -10,7 +10,7 @@ msgid "examples.flat.example.1"
 msgstr "Example 1"
 
 msgid "examples.flat.example.2"
-msgstr "Example 2"
+msgstr "Example 2 {foo}"
 
 msgctxt "base"
 msgid "examples.hierarchical.example.1"
