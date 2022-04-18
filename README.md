@@ -55,12 +55,13 @@ npm po:build
 
 ## CLI Options
 
-| Option        | Type    | Default              | Description                       |
-| ------------- | ------- | -------------------- | --------------------------------- |
-| `--targetDir` | string  | `./dictionaries`     | Target directory with `.po` files |
-| `--outDir`    | string  | `./src/dictionaries` | Save output to the directory      |
-| `--outExt`    | string  | `.js`                | Output files extensions           |
-| `--watch`     | boolean | `false`              | Run the extractor in watch mode   |
+| Option        | Type    | Default              | Description                           |
+| ------------- | ------- | -------------------- | ------------------------------------- |
+| `--fixPo`     | boolean | `false`              | Fix translations order in `.po` files |
+| `--outDir`    | string  | `./src/dictionaries` | Save output to the directory          |
+| `--outExt`    | string  | `.js`                | Output files extensions               |
+| `--targetDir` | string  | `./dictionaries`     | Target directory with `.po` files     |
+| `--watch`     | boolean | `false`              | Run the extractor in watch mode       |
 
 ## License
 

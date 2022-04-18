@@ -1,11 +1,13 @@
 const { join } = require('path');
 const { existsSync, promises } = require('fs');
+const { po } = require('gettext-parser');
 
 const {
-  targetDir,
+  isFixPo,
   outExt,
-  targetDirectory,
   outputDirectory,
+  targetDir,
+  targetDirectory,
 } = require('../args');
 const load = require('./load');
 const render = require('./render');
@@ -23,7 +25,7 @@ module.exports = async (shortFilename) => {
   const directory = join(outputDirectory, locale);
   const filename = join(targetDirectory, shortFilename);
 
-  const [translations, listing] = await Promise.all([
+  const [{ translations, headers }, listing] = await Promise.all([
     load(filename),
     readDir(directory, (filename) => filename.endsWith(outExt)),
   ]);
@@ -50,6 +52,10 @@ module.exports = async (shortFilename) => {
 
   const toUpdate = await Promise.all(toRender);
 
+  const toFix = isFixPo
+    ? po.compile({ headers, translations }, { sort: true }).toString()
+    : null;
+
   if (!existsSync(directory)) {
     await mkdir(directory);
   }
@@ -66,5 +72,15 @@ module.exports = async (shortFilename) => {
     ...toRemove.map((partition) =>
       remove({ partition, extension: outExt, directory })
     ),
+    ...(toFix
+      ? [
+          save({
+            text: toFix,
+            partition: shortFilename,
+            extension: '',
+            directory: targetDirectory,
+          }),
+        ]
+      : []),
   ]);
 };
