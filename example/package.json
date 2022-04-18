@@ -1,6 +1,6 @@
 {
   "name": "po-extract-example",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
   "author": "Kirill Neruchev <kirill@neruchev.com>",
   "license": "MIT",
@@ -9,11 +9,11 @@
     "po:watch": "po-extract --outExt=.ts --outDir=./src/i18n/dictionaries --watch"
   },
   "dependencies": {
-    "@types/react": "^17.0.37",
+    "@types/react": "^17.0.44",
     "po-extract": "../",
     "react": "^17.0.2",
-    "react-intl": "^5.22.0",
-    "typescript": "^4.5.2"
+    "react-intl": "^5.25.0",
+    "typescript": "^4.6.3"
   },
   "engines": {
     "node": "16.*",

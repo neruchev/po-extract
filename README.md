@@ -1,7 +1,7 @@
 # po-extract
 
 [![NPM version](https://img.shields.io/npm/v/po-extract.svg?style=flat)](https://www.npmjs.com/package/po-extract)
-![CI workflow](https://github.com/neruchev/po-extract/workflows/CI%20workflow/badge.svg)
+![CI workflow](https://github.com/neruchev/po-extract/workflows/Tests/badge.svg)
 
 A CLI tool for creating [react-intl](https://www.npmjs.com/package/react-intl)-compatible dictionaries from [gettext](https://www.gnu.org/software/gettext/) `.po`-files.
 
@@ -55,12 +55,13 @@ npm po:build
 
 ## CLI Options
 
-| Option        | Type    | Default              | Description                       |
-| ------------- | ------- | -------------------- | --------------------------------- |
-| `--targetDir` | string  | `./dictionaries`     | Target directory with `.po` files |
-| `--outDir`    | string  | `./src/dictionaries` | Save output to the directory      |
-| `--outExt`    | string  | `.js`                | Output files extensions           |
-| `--watch`     | boolean | `false`              | Run the extractor in watch mode   |
+| Option        | Type    | Default              | Description                           |
+| ------------- | ------- | -------------------- | ------------------------------------- |
+| `--fixPo`     | boolean | `false`              | Fix translations order in `.po` files |
+| `--outDir`    | string  | `./src/dictionaries` | Save output to the directory          |
+| `--outExt`    | string  | `.js`                | Output files extensions               |
+| `--targetDir` | string  | `./dictionaries`     | Target directory with `.po` files     |
+| `--watch`     | boolean | `false`              | Run the extractor in watch mode       |
 
 ## License
 
