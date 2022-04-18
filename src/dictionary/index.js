@@ -53,7 +53,7 @@ module.exports = async (shortFilename) => {
   const toUpdate = await Promise.all(toRender);
 
   const toFix = isFixPo
-    ? po.compile({ headers, translations }, { sort: true }).toString()
+    ? po.compile({ headers, translations }, { sort: true }).toString() + '\n'
     : null;
 
   if (!existsSync(directory)) {
