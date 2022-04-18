@@ -7,7 +7,7 @@ module.exports = async (filename) => {
   try {
     const { translations, headers } = po.parse(file);
 
-    if (translations['']['']) {
+    if (translations && translations[''] && translations['']['']) {
       delete translations[''][''];
     }
 
