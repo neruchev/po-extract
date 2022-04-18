@@ -5,10 +5,10 @@ const { validateDirectory, validateExtension } = require('./validators');
 const { version } = require('../package.json');
 
 const options = {
-  targetDir: {
-    type: 'string',
-    describe: 'Target directory with `.po` files',
-    default: './dictionaries',
+  fixPo: {
+    type: 'boolean',
+    describe: 'Fix translations order in `.po` files',
+    default: false,
   },
   outDir: {
     type: 'string',
@@ -19,6 +19,11 @@ const options = {
     type: 'string',
     describe: 'Output files extensions',
     default: '.js',
+  },
+  targetDir: {
+    type: 'string',
+    describe: 'Target directory with `.po` files',
+    default: './dictionaries',
   },
   watch: {
     type: 'boolean',
@@ -37,7 +42,7 @@ const validateArgs = ({ targetDir, outDir, outExt }) => {
   return true;
 };
 
-const { targetDir, outDir, outExt, watch } = yargs
+const { fixPo, outDir, outExt, targetDir, watch } = yargs
   .options(options)
   .check(validateArgs, true)
   .version(version)
@@ -46,9 +51,10 @@ const { targetDir, outDir, outExt, watch } = yargs
   .help().argv;
 
 module.exports = {
-  outExt,
-  targetDir,
+  isFixPo: fixPo,
   isWatch: watch,
-  targetDirectory: resolve(process.cwd(), targetDir),
+  outExt,
   outputDirectory: resolve(process.cwd(), outDir),
+  targetDir,
+  targetDirectory: resolve(process.cwd(), targetDir),
 };
