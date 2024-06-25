@@ -1,7 +1,7 @@
 import { po } from 'gettext-parser';
 import { readFile } from 'fs/promises';
 
-export const load = async (filename) => {
+export const load = async (filename: string) => {
   const file = await readFile(filename);
 
   try {

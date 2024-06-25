@@ -2,9 +2,13 @@ import { join } from 'path';
 import { watch, existsSync } from 'fs';
 
 // ignore twice calls
-const lock = {};
+const lock: Record<string, boolean> = {};
 
-const isAvailable = (directory, filename, checkExtension) =>
+const isAvailable = (
+  directory: string,
+  filename: string,
+  checkExtension: (filename: string) => boolean
+) =>
   filename &&
   !lock[filename] &&
   checkExtension(filename) &&

@@ -1,15 +1,15 @@
 import { resolve } from 'path';
 import { accessSync, lstatSync, constants } from 'fs';
 
-export const validateExtension = (ext) => {
-  const parts = ext.split('.');
+export const validateExtension = (extension: string) => {
+  const parts = extension.split('.');
 
   if (parts[0] || !/^[a-zA-Z]*$/.test(parts[1])) {
-    throw new Error(`Invalid extension: '${ext}'`);
+    throw new Error(`Invalid extension: '${extension}'`);
   }
 };
 
-export const validateDirectory = (dir, name) => {
+export const validateDirectory = (dir: string, name: string) => {
   const directory = resolve(process.cwd(), dir);
 
   try {
@@ -29,4 +29,4 @@ export const validateDirectory = (dir, name) => {
   }
 };
 
-export const isPo = (filename) => filename.endsWith('.po');
+export const isPo = (filename: string) => filename.endsWith('.po');

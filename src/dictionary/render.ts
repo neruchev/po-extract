@@ -1,6 +1,6 @@
 import { prettify } from './prettify';
 
-const isWithBreak = (partition, prev, curr) => {
+const isWithBreak = (partition: string, prev: string, curr: string) => {
   if (!prev) {
     return true;
   }
@@ -15,7 +15,7 @@ const isWithBreak = (partition, prev, curr) => {
   );
 };
 
-const renderPartitions = (list, current) => {
+const renderPartitions = (list, current: string) => {
   if (current !== '') {
     return { spreads: '', imports: '' };
   }

@@ -16,9 +16,10 @@ import { remove } from './remove';
 import { save } from './save';
 import { readDir } from '../readDir';
 
-const parseLocale = (filename) => filename.split('.')[0].replace(/[^\w]/g, '_');
+const parseLocale = (filename: string) =>
+  filename.split('.')[0].replace(/[^\w]/g, '_');
 
-export default async (shortFilename) => {
+export const handler = async (shortFilename: string) => {
   const locale = parseLocale(shortFilename);
 
   const directory = join(outputDirectory, locale);
