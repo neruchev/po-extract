@@ -30,7 +30,13 @@ const renderPartitions = (list, current) => {
   };
 };
 
-export const render = async ({ locale, partition, strings, source, partitions }) => {
+export const render = async ({
+  locale,
+  partition,
+  strings,
+  source,
+  partitions,
+}) => {
   const keys = Object.keys(strings);
 
   const renderItem = (key, i) => {

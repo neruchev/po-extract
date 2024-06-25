@@ -10,11 +10,11 @@ import {
   targetDir,
   targetDirectory,
 } from '../args';
-import {load} from './load';
-import {render} from './render';
-import {remove} from './remove';
-import {save} from './save';
-import {readDir} from '../readDir';
+import { load } from './load';
+import { render } from './render';
+import { remove } from './remove';
+import { save } from './save';
+import { readDir } from '../readDir';
 
 const parseLocale = (filename) => filename.split('.')[0].replace(/[^\w]/g, '_');
 

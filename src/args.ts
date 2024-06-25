@@ -42,7 +42,13 @@ const validateArgs = ({ targetDir, outDir, outExt }) => {
   return true;
 };
 
-export const { fixPo: isFixPo, outDir, outExt, targetDir, watch: isWatch } = yargs
+export const {
+  fixPo: isFixPo,
+  outDir,
+  outExt,
+  targetDir,
+  watch: isWatch,
+} = yargs
   .options(options)
   .check(validateArgs, true)
   .version(version)
@@ -51,4 +57,4 @@ export const { fixPo: isFixPo, outDir, outExt, targetDir, watch: isWatch } = yar
   .help().argv;
 
 export const outputDirectory = resolve(process.cwd(), outDir);
-export const targetDirectory = resolve(process.cwd(), targetDir)
+export const targetDirectory = resolve(process.cwd(), targetDir);
