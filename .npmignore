@@ -1,0 +1,15 @@
+__tests__/*
+.github/*
+.husky/*
+.vscode/*
+build/__tests__/*
+node_modules/*
+src/*
+typings/*
+.gitignore
+.prettierignore
+.prettierrc
+tsconfig.json
+vitest.config.ts
+yarn-error.log
+yarn.lock
