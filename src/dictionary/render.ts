@@ -1,4 +1,4 @@
-const prettify = require('./prettify');
+import { prettify } from './prettify';
 
 const isWithBreak = (partition, prev, curr) => {
   if (!prev) {
@@ -30,7 +30,7 @@ const renderPartitions = (list, current) => {
   };
 };
 
-module.exports = async ({ locale, partition, strings, source, partitions }) => {
+export const render = async ({ locale, partition, strings, source, partitions }) => {
   const keys = Object.keys(strings);
 
   const renderItem = (key, i) => {
@@ -54,8 +54,5 @@ module.exports = async ({ locale, partition, strings, source, partitions }) => {
     `${disclaimer}\n${imports}export const ${name} = {${spreads} ${rendered}};`
   );
 
-  return {
-    text,
-    partition,
-  };
+  return { text, partition };
 };

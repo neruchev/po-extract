@@ -1,8 +1,8 @@
-const yargs = require('yargs');
-const { resolve } = require('path');
+import yargs from 'yargs';
+import { resolve } from 'path';
 
-const { validateDirectory, validateExtension } = require('./validators');
-const { version } = require('../package.json');
+import { validateDirectory, validateExtension } from './validators';
+import { version } from '../package.json';
 
 const options = {
   fixPo: {
@@ -42,7 +42,7 @@ const validateArgs = ({ targetDir, outDir, outExt }) => {
   return true;
 };
 
-const { fixPo, outDir, outExt, targetDir, watch } = yargs
+export const { fixPo: isFixPo, outDir, outExt, targetDir, watch: isWatch } = yargs
   .options(options)
   .check(validateArgs, true)
   .version(version)
@@ -50,11 +50,5 @@ const { fixPo, outDir, outExt, targetDir, watch } = yargs
   .strict()
   .help().argv;
 
-module.exports = {
-  isFixPo: fixPo,
-  isWatch: watch,
-  outExt,
-  outputDirectory: resolve(process.cwd(), outDir),
-  targetDir,
-  targetDirectory: resolve(process.cwd(), targetDir),
-};
+export const outputDirectory = resolve(process.cwd(), outDir);
+export const targetDirectory = resolve(process.cwd(), targetDir)

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-const handler = require('./dictionary');
-const watcher = require('./watcher');
-const transformer = require('./transformer');
-const { isPo } = require('./validators');
-const { isWatch, targetDirectory } = require('./args');
+import handler from './dictionary';
+import watcher from './watcher';
+import transformer from './transformer';
+import { isPo } from './validators';
+import { isWatch, targetDirectory } from './args';
 
 const options = {
   directory: targetDirectory,

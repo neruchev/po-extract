@@ -1,25 +1,24 @@
-const { join } = require('path');
-const { existsSync, promises } = require('fs');
-const { po } = require('gettext-parser');
+import { join } from 'path';
+import { existsSync } from 'fs';
+import { mkdir } from 'fs/promises';
+import { po } from 'gettext-parser';
 
-const {
+import {
   isFixPo,
   outExt,
   outputDirectory,
   targetDir,
   targetDirectory,
-} = require('../args');
-const load = require('./load');
-const render = require('./render');
-const remove = require('./remove');
-const save = require('./save');
-const readDir = require('../readDir');
-
-const { mkdir } = promises;
+} from '../args';
+import {load} from './load';
+import {render} from './render';
+import {remove} from './remove';
+import {save} from './save';
+import {readDir} from '../readDir';
 
 const parseLocale = (filename) => filename.split('.')[0].replace(/[^\w]/g, '_');
 
-module.exports = async (shortFilename) => {
+export default async (shortFilename) => {
   const locale = parseLocale(shortFilename);
 
   const directory = join(outputDirectory, locale);

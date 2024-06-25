@@ -1,6 +1,6 @@
-const readDir = require('./readDir');
+import { readDir } from './readDir';
 
-module.exports = async (callback, { directory, checkExtension }) => {
+export const transformer = async (callback, { directory, checkExtension }) => {
   const dictionaries = await readDir(directory, checkExtension);
 
   for (let i = 0; i < dictionaries.length; i++) {

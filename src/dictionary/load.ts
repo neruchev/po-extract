@@ -1,7 +1,7 @@
-const { po } = require('gettext-parser');
-const { readFile } = require('fs').promises;
+import { po } from 'gettext-parser';
+import { readFile } from 'fs/promises';
 
-module.exports = async (filename) => {
+export const load = async (filename) => {
   const file = await readFile(filename);
 
   try {

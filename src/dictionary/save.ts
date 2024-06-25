@@ -1,9 +1,8 @@
-const { join } = require('path');
-const { existsSync, promises } = require('fs');
+import { join } from 'path';
+import { existsSync } from 'fs';
+import { writeFile, readFile } from 'fs/promises';
 
-const { writeFile, readFile } = promises;
-
-module.exports = async ({ text, extension, directory, partition }) => {
+export const save = async ({ text, extension, directory, partition }) => {
   const filePath = join(directory, partition + extension);
 
   if (existsSync(filePath)) {

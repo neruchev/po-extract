@@ -1,5 +1,5 @@
-const { join } = require('path');
-const { watch, existsSync } = require('fs');
+import { join } from 'path';
+import { watch, existsSync } from 'fs';
 
 // ignore twice calls
 const lock = {};
@@ -10,7 +10,7 @@ const isAvailable = (directory, filename, checkExtension) =>
   checkExtension(filename) &&
   existsSync(join(directory, filename));
 
-module.exports = (callback, { isEnabled, directory, checkExtension }) => {
+export const watcher = (callback, { isEnabled, directory, checkExtension }) => {
   if (isEnabled) {
     watch(directory, async (_event, filename) => {
       if (isAvailable(directory, filename, checkExtension)) {
