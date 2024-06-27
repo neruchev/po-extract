@@ -14,7 +14,7 @@ import { load } from './load';
 import { render } from './render';
 import { remove } from './remove';
 import { save } from './save';
-import { readDir } from '../readDir';
+import { readDir } from '../utils';
 
 const parseLocale = (filename: string) =>
   filename.split('.')[0].replace(/[^\w]/g, '_');

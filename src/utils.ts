@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import { accessSync, lstatSync, constants } from 'fs';
+import { readdir } from 'fs/promises';
 
 export const validateExtension = (extension: string) => {
   const parts = extension.split('.');
@@ -8,6 +9,8 @@ export const validateExtension = (extension: string) => {
     throw new Error(`Invalid extension: '${extension}'`);
   }
 };
+
+export const isPo = (filename: string) => filename.endsWith('.po');
 
 export const validateDirectory = (dir: string, name: string) => {
   const directory = resolve(process.cwd(), dir);
@@ -29,4 +32,12 @@ export const validateDirectory = (dir: string, name: string) => {
   }
 };
 
-export const isPo = (filename: string) => filename.endsWith('.po');
+export const readDir = async (directory: string) => {
+  try {
+    const listing = await readdir(directory, { withFileTypes: true });
+
+    return listing.filter((item) => isPo(item.name));
+  } catch (e) {
+    return [];
+  }
+};
