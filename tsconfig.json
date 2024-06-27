@@ -14,7 +14,6 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "outDir": "./build",
     "removeComments": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -22,8 +21,8 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2018"
+    "target": "es2020"
   },
-  "include": ["src/**/*", "typings/**/*", "__tests__/**/*"],
-  "exclude": ["build", "node_modules"]
+  "include": ["src/**/*", "typings/**/*"],
+  "exclude": ["dist", "node_modules"]
 }

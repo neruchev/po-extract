@@ -10,7 +10,7 @@
     "po",
     "extract"
   ],
-  "main": "./build/src",
+  "main": "./dist",
   "homepage": "https://github.com/neruchev/po-extract#readme",
   "repository": "git@github.com:neruchev/po-extract.git",
   "bugs": {
@@ -20,24 +20,26 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "tsc -b",
-    "watch": "tsc -b -w",
+    "build": "tsup",
+    "watch": "tsup --watch",
     "test": "vitest run",
+    "typecheck": "tsc",
     "prettier": "prettier --check .",
     "prepare": "husky install"
   },
   "dependencies": {
-    "gettext-parser": "^8.0.0",
-    "prettier": "*",
-    "yargs": "^17"
+    "prettier": "*"
   },
   "devDependencies": {
     "@types/gettext-parser": "^4.0.4",
     "@types/yargs": "^17.0.32",
+    "gettext-parser": "^8.0.0",
     "husky": "^9.0.11",
     "pretty-quick": "^4.0.0",
+    "tsup": "^8.1.0",
     "typescript": "^5.5.2",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "yargs": "^17"
   },
   "bin": {
     "po-extract": "src/index.js"

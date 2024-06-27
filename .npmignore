@@ -1,8 +1,6 @@
-__tests__/*
 .github/*
 .husky/*
 .vscode/*
-build/__tests__/*
 node_modules/*
 src/*
 typings/*
@@ -10,6 +8,7 @@ typings/*
 .prettierignore
 .prettierrc
 tsconfig.json
+tsup.config.ts
 vitest.config.ts
 yarn-error.log
 yarn.lock
