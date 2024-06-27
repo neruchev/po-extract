@@ -244,7 +244,7 @@ loose-envify@^1.1.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-po-extract@../:
+po-extract@../build:
   version "2.0.0"
   dependencies:
     gettext-parser "^8.0.0"

@@ -17,23 +17,19 @@ const isAvailable = (
 export const watcher = (
   callback: (name: string) => Promise<void>,
   {
-    isEnabled,
     directory,
     checkExtension,
   }: {
-    isEnabled: boolean;
     directory: string;
     checkExtension: (filename: string) => boolean;
   }
 ) => {
-  if (isEnabled) {
-    watch(directory, async (_event, filename) => {
-      if (isAvailable(directory, filename, checkExtension) && filename) {
-        lock[filename] = true;
-        await callback(filename);
+  watch(directory, async (_event, filename) => {
+    if (isAvailable(directory, filename, checkExtension) && filename) {
+      lock[filename] = true;
+      await callback(filename);
 
-        setTimeout(() => (lock[filename] = false), 500);
-      }
-    });
-  }
+      setTimeout(() => (lock[filename] = false), 500);
+    }
+  });
 };

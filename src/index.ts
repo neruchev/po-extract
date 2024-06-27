@@ -2,8 +2,8 @@
 'use strict';
 
 import { handler } from './dictionary';
-import { watcher } from './watcher';
-import { transformer } from './transformer';
+import { watcher } from './tasks/watcher';
+import { transformer } from './tasks/transformer';
 import { isPo } from './validators';
 import { isWatch, targetDirectory } from './args';
 
@@ -13,10 +13,9 @@ const options = {
 };
 
 (async () => {
-  watcher(handler, {
-    ...options,
-    isEnabled: isWatch,
-  });
-
-  await transformer(handler, options);
+  if (isWatch) {
+    watcher(handler, options);
+  } else {
+    await transformer(handler, options);
+  }
 })();
