@@ -32,11 +32,14 @@ export const validateDirectory = (dir: string, name: string) => {
   }
 };
 
-export const readDir = async (directory: string) => {
+export const readDir = async (
+  directory: string,
+  checkExtension: (filename: string) => boolean
+) => {
   try {
     const listing = await readdir(directory, { withFileTypes: true });
 
-    return listing.filter((item) => isPo(item.name));
+    return listing.filter((item) => checkExtension(item.name));
   } catch (e) {
     return [];
   }
