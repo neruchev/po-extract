@@ -28,7 +28,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "prettier": "*"
+    "prettier": "*",
+    "yargs": "^17"
   },
   "devDependencies": {
     "@types/gettext-parser": "^4.0.4",
@@ -38,8 +39,7 @@
     "pretty-quick": "^4.0.0",
     "tsup": "^8.1.0",
     "typescript": "^5.5.2",
-    "vitest": "^1.6.0",
-    "yargs": "^17"
+    "vitest": "^1.6.0"
   },
   "bin": {
     "po-extract": "dist/index.js"

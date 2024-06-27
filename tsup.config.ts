@@ -5,7 +5,7 @@ export default defineConfig({
   dts: false,
   entry: ['src/index.ts'],
   esbuildOptions(options) {
-    options.external = ['prettier'];
+    options.external = ['prettier', 'yargs'];
   },
   esbuildPlugins: [],
   format: 'cjs',
