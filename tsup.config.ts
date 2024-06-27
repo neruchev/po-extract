@@ -1,13 +1,15 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  format: 'cjs',
-  dts: true,
-  sourcemap: true,
   clean: true,
+  dts: false,
+  entry: ['src/index.ts'],
   esbuildOptions(options) {
     options.external = ['prettier'];
   },
   esbuildPlugins: [],
+  format: 'cjs',
+  minify: true,
+  sourcemap: false,
+  treeshake: true,
 });
