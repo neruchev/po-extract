@@ -1,6 +1,10 @@
 import { prettify } from './prettify';
 
-const isWithBreak = (partition: string, prev: string, curr: string) => {
+const isWithBreak = (
+  partition: string,
+  prev: string | undefined,
+  curr: string
+) => {
   if (!prev) {
     return true;
   }
@@ -15,7 +19,7 @@ const isWithBreak = (partition: string, prev: string, curr: string) => {
   );
 };
 
-const renderPartitions = (list, current: string) => {
+const renderPartitions = (list: string[], current: string) => {
   if (current !== '') {
     return { spreads: '', imports: '' };
   }
@@ -36,17 +40,27 @@ export const render = async ({
   strings,
   source,
   partitions,
+}: {
+  locale: string;
+  partition: string;
+  strings: Record<string, { msgstr: string[] }>;
+  source: string;
+  partitions: string[];
 }) => {
   const keys = Object.keys(strings);
 
-  const renderItem = (key, i) => {
-    const value = strings[key].msgstr[0];
-    const withBreak = isWithBreak(partition, i ? keys[i - 1] : undefined, key);
+  const rendered = keys
+    .map((key, i) => {
+      const value = strings[key].msgstr[0];
+      const withBreak = isWithBreak(
+        partition,
+        i ? keys[i - 1] : undefined,
+        key
+      );
 
-    return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, "\\'")}',`;
-  };
-
-  const rendered = keys.map(renderItem).join('\n');
+      return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, "\\'")}',`;
+    })
+    .join('\n');
   const { spreads, imports } = renderPartitions(partitions, partition);
 
   const disclaimer = `

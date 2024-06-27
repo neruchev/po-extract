@@ -30,17 +30,7 @@ const options = {
     describe: 'Run the extractor in watch mode',
     default: false,
   },
-};
-
-const validateArgs = ({ targetDir, outDir, outExt }) => {
-  // Yargs does not support asynchronous checks
-  validateDirectory(targetDir, 'targetDir');
-  validateDirectory(outDir, 'outDir');
-
-  validateExtension(outExt);
-
-  return true;
-};
+} as const;
 
 export const {
   fixPo: isFixPo,
@@ -50,11 +40,19 @@ export const {
   watch: isWatch,
 } = yargs
   .options(options)
-  .check(validateArgs, true)
+  .check(({ targetDir, outDir, outExt }) => {
+    validateDirectory(targetDir, 'targetDir');
+    validateDirectory(outDir, 'outDir');
+
+    validateExtension(outExt);
+
+    return true;
+  }, true)
   .version(version)
   .version(false)
   .strict()
-  .help().argv;
+  .help()
+  .parseSync();
 
 export const outputDirectory = resolve(process.cwd(), outDir);
 export const targetDirectory = resolve(process.cwd(), targetDir);

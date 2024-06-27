@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
-    "lib": ["es2018", "dom"],
+    "lib": ["es2021", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,

@@ -6,7 +6,7 @@ const lock: Record<string, boolean> = {};
 
 const isAvailable = (
   directory: string,
-  filename: string,
+  filename: string | null,
   checkExtension: (filename: string) => boolean
 ) =>
   filename &&
@@ -14,10 +14,21 @@ const isAvailable = (
   checkExtension(filename) &&
   existsSync(join(directory, filename));
 
-export const watcher = (callback, { isEnabled, directory, checkExtension }) => {
+export const watcher = (
+  callback: (name: string) => Promise<void>,
+  {
+    isEnabled,
+    directory,
+    checkExtension,
+  }: {
+    isEnabled: boolean;
+    directory: string;
+    checkExtension: (filename: string) => boolean;
+  }
+) => {
   if (isEnabled) {
     watch(directory, async (_event, filename) => {
-      if (isAvailable(directory, filename, checkExtension)) {
+      if (isAvailable(directory, filename, checkExtension) && filename) {
         lock[filename] = true;
         await callback(filename);
 

@@ -53,7 +53,9 @@ export const handler = async (shortFilename: string) => {
   const toUpdate = await Promise.all(toRender);
 
   const toFix = isFixPo
-    ? po.compile({ headers, translations }, { sort: true }).toString() + '\n'
+    ? po
+        .compile({ charset: 'utf-8', headers, translations }, { sort: true })
+        .toString() + '\n'
     : null;
 
   if (!existsSync(directory)) {
