@@ -42,7 +42,7 @@
     "yargs": "^17"
   },
   "bin": {
-    "po-extract": "src/index.js"
+    "po-extract": "dist/index.js"
   },
   "files": [
     "src"

@@ -1,4 +1,4 @@
-import yargs from 'yargs';
+import yargs from 'yargs/yargs';
 import { resolve } from 'path';
 
 import { validateDirectory, validateExtension } from './utils';
@@ -38,7 +38,7 @@ export const {
   outExt,
   targetDir,
   watch: isWatch,
-} = yargs
+} = yargs(process.argv.slice(2))
   .options(options)
   .check(({ targetDir, outDir, outExt }) => {
     validateDirectory(targetDir, 'targetDir');
