@@ -10,10 +10,8 @@ import {
   targetDir,
   targetDirectory,
 } from 'src/args';
-import { load } from 'src/dictionary/load';
 import { render } from 'src/dictionary/render';
-import { remove } from 'src/dictionary/remove';
-import { save } from 'src/dictionary/save';
+import { load, save, remove } from 'src/dictionary/files';
 import { readDir } from 'src/utils';
 
 const parseLocale = (filename: string) =>
@@ -71,9 +69,7 @@ export const handler = async (shortFilename: string) => {
         directory,
       })
     ),
-    ...toRemove.map((partition) =>
-      remove({ partition, extension: outExt, directory })
-    ),
+    ...toRemove.map((partition) => remove(directory, partition, outExt)),
     ...(toFix
       ? [
           save({
