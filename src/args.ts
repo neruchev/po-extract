@@ -1,7 +1,7 @@
 import yargs from 'yargs/yargs';
 import { resolve } from 'path';
 
-import { validateDirectory, validateExtension } from './utils';
+import { validateDirectory, validateExtension } from 'src/utils';
 import { version } from '../package.json';
 
 const options = {

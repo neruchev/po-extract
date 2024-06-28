@@ -1,4 +1,4 @@
-import { prettify } from './prettify';
+import { prettify } from 'src/dictionary/prettify';
 
 const isWithBreak = (
   partition: string,

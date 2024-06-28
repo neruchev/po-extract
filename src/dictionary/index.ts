@@ -9,12 +9,12 @@ import {
   outputDirectory,
   targetDir,
   targetDirectory,
-} from '../args';
-import { load } from './load';
-import { render } from './render';
-import { remove } from './remove';
-import { save } from './save';
-import { readDir } from '../utils';
+} from 'src/args';
+import { load } from 'src/dictionary/load';
+import { render } from 'src/dictionary/render';
+import { remove } from 'src/dictionary/remove';
+import { save } from 'src/dictionary/save';
+import { readDir } from 'src/utils';
 
 const parseLocale = (filename: string) =>
   filename.split('.')[0].replace(/[^\w]/g, '_');

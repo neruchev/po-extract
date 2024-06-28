@@ -1,4 +1,4 @@
-import { readDir, isPo } from '../utils';
+import { readDir, isPo } from 'src/utils';
 
 export const transformer = async (
   callback: (name: string) => Promise<void>,

@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { watch, existsSync } from 'fs';
 
-import { isPo } from '../utils';
+import { isPo } from 'src/utils';
 
 // ignore twice calls
 const lock: Record<string, boolean> = {};

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-import { handler } from './dictionary';
-import { watcher } from './tasks/watcher';
-import { transformer } from './tasks/transformer';
-import { isWatch, targetDirectory } from './args';
+import { handler } from 'src/dictionary';
+import { watcher } from 'src/tasks/watcher';
+import { transformer } from 'src/tasks/transformer';
+import { isWatch, targetDirectory } from 'src/args';
 
 const options = {
   directory: targetDirectory,
