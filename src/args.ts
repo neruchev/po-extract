@@ -1,8 +1,8 @@
 import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
 import { resolve } from 'path';
 
 import { validateDirectory, validateExtension } from 'src/utils';
-import { version } from '../package.json';
 
 const options = {
   fixPo: {
@@ -32,27 +32,21 @@ const options = {
   },
 } as const;
 
-export const {
-  fixPo: isFixPo,
-  outDir,
-  outExt,
-  targetDir,
-  watch: isWatch,
-} = yargs(process.argv.slice(2))
+const args = yargs(hideBin(process.argv))
   .options(options)
   .check(({ targetDir, outDir, outExt }) => {
     validateDirectory(targetDir, 'targetDir');
     validateDirectory(outDir, 'outDir');
-
     validateExtension(outExt);
 
     return true;
   }, true)
-  .version(version)
-  .version(false)
+  .version()
   .strict()
   .help()
   .parseSync();
 
-export const outputDirectory = resolve(process.cwd(), outDir);
-export const targetDirectory = resolve(process.cwd(), targetDir);
+export const outputDirectory = resolve(process.cwd(), args.outDir);
+export const targetDirectory = resolve(process.cwd(), args.targetDir);
+
+export const { fixPo: isFixPo, outExt, watch: isWatch, targetDir } = args;
