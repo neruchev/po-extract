@@ -8,7 +8,7 @@ import {
   targetDir,
   targetDirectory,
 } from 'src/constants';
-import { render } from 'src/dictionary/render';
+import { render } from 'src/dictionary/output';
 import { save, remove } from 'src/dictionary/files';
 import { parse, compile } from 'src/dictionary/po';
 import { readDir } from 'src/utils';
