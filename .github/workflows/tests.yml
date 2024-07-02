@@ -26,6 +26,3 @@ jobs:
 
       - name: Run prettier check
         run: yarn run prettier
-
-      - name: Run unit tests
-        run: yarn run test

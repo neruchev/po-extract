@@ -9,6 +9,5 @@ typings/*
 .prettierrc
 tsconfig.json
 tsup.config.ts
-vitest.config.ts
 yarn-error.log
 yarn.lock
