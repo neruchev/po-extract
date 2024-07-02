@@ -6,39 +6,29 @@ import { watch, existsSync } from 'fs';
 import { handler } from 'src/dictionary';
 import { isWatch, targetDirectory } from 'src/args';
 import { readDir, isPo } from 'src/utils';
+import { Locker } from 'src/Locker';
 
-// ignore twice calls
-const lock: Record<string, boolean> = {};
-
-const isAvailable = (directory: string, filename: string | null) =>
-  filename &&
-  !lock[filename] &&
-  isPo(filename) &&
-  existsSync(join(directory, filename));
-
-const watcher = (callback: (name: string) => Promise<void>) => {
-  watch(targetDirectory, async (_event, filename) => {
-    if (isAvailable(targetDirectory, filename) && filename) {
-      lock[filename] = true;
-      await callback(filename);
-
-      setTimeout(() => (lock[filename] = false), 500);
-    }
-  });
-};
-
-const transformer = async (callback: (name: string) => Promise<void>) => {
-  const dictionaries = await readDir(targetDirectory, isPo);
-
-  for (let i = 0; i < dictionaries.length; i++) {
-    await callback(dictionaries[i].name);
-  }
-};
+const locker = new Locker();
 
 (async () => {
-  if (isWatch) {
-    watcher(handler);
-  } else {
-    await transformer(handler);
+  if (!isWatch) {
+    const dictionaries = await readDir(targetDirectory, isPo);
+    await Promise.all(dictionaries.map(({ name }) => handler(name)));
+
+    return;
   }
+
+  watch(targetDirectory, async (_event, filename) => {
+    if (
+      filename &&
+      !locker.isLocked(filename) &&
+      isPo(filename) &&
+      existsSync(join(targetDirectory, filename))
+    ) {
+      locker.lock(filename);
+      await handler(filename);
+
+      setTimeout(() => locker.unlock(filename), 500);
+    }
+  });
 })();

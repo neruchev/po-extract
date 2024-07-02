@@ -61,6 +61,7 @@ export const render = async ({
       return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, "\\'")}',`;
     })
     .join('\n');
+
   const { spreads, imports } = renderPartitions(partitions, partition);
 
   const disclaimer = `
