@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { accessSync, lstatSync, constants } from 'fs';
 import { readdir } from 'fs/promises';
+import { cwd } from 'src/constants';
 
 export const isPo = (filename: string) => filename.endsWith('.po');
 
@@ -13,7 +14,7 @@ export const validateExtension = (extension: string) => {
 };
 
 export const validateDirectory = (dir: string, name: string) => {
-  const directory = resolve(process.cwd(), dir);
+  const directory = resolve(cwd, dir);
 
   try {
     accessSync(directory, constants.R_OK);

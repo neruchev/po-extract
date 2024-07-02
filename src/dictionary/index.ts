@@ -9,7 +9,7 @@ import {
   outputDirectory,
   targetDir,
   targetDirectory,
-} from 'src/args';
+} from 'src/constants';
 import { render } from 'src/dictionary/render';
 import { load, save, remove } from 'src/dictionary/files';
 import { readDir } from 'src/utils';

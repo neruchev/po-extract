@@ -4,7 +4,7 @@ import { join } from 'path';
 import { watch, existsSync } from 'fs';
 
 import { handler } from 'src/dictionary';
-import { isWatch, targetDirectory } from 'src/args';
+import { isWatch, targetDirectory } from 'src/constants';
 import { readDir, isPo } from 'src/utils';
 import { Locker } from 'src/Locker';
 
