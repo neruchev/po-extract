@@ -46,9 +46,7 @@ const args = yargs(hideBin(process.argv))
   .help()
   .parseSync();
 
-export const cwd = process.cwd();
-
-export const outputDirectory = resolve(cwd, args.outDir);
-export const targetDirectory = resolve(cwd, args.targetDir);
+export const outputDirectory = resolve(process.cwd(), args.outDir);
+export const targetDirectory = resolve(process.cwd(), args.targetDir);
 
 export const { fixPo: isFixPo, outExt, watch: isWatch, targetDir } = args;
