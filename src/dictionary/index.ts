@@ -1,17 +1,16 @@
 import { join } from 'path';
 import { existsSync } from 'fs';
-import { mkdir } from 'fs/promises';
-import { po } from 'gettext-parser';
+import { mkdir, readFile } from 'fs/promises';
 
 import {
-  isFixPo,
   outExt,
   outputDirectory,
   targetDir,
   targetDirectory,
 } from 'src/constants';
 import { render } from 'src/dictionary/render';
-import { load, save, remove } from 'src/dictionary/files';
+import { save, remove } from 'src/dictionary/files';
+import { parse, compile } from 'src/dictionary/po';
 import { readDir } from 'src/utils';
 
 const parseLocale = (filename: string) =>
@@ -23,11 +22,12 @@ export const handler = async (shortFilename: string) => {
   const directory = join(outputDirectory, locale);
   const filename = join(targetDirectory, shortFilename);
 
-  const [{ translations, headers }, listing] = await Promise.all([
-    load(filename),
+  const [file, listing] = await Promise.all([
+    readFile(filename),
     readDir(directory, (filename) => filename.endsWith(outExt)),
   ]);
 
+  const { translations, headers } = parse(file, filename);
   const partitions = Object.keys(translations);
 
   const commonOpts = {
@@ -49,12 +49,7 @@ export const handler = async (shortFilename: string) => {
   }
 
   const toUpdate = await Promise.all(toRender);
-
-  const toFix = isFixPo
-    ? po
-        .compile({ charset: 'utf-8', headers, translations }, { sort: true })
-        .toString() + '\n'
-    : null;
+  const toFix = compile({ headers, translations });
 
   if (!existsSync(directory)) {
     await mkdir(directory);
@@ -62,23 +57,9 @@ export const handler = async (shortFilename: string) => {
 
   await Promise.all([
     ...toUpdate.map(({ text, partition }) =>
-      save({
-        text,
-        partition: partition || 'index',
-        extension: outExt,
-        directory,
-      })
+      save(text, directory, partition || 'index', outExt)
     ),
     ...toRemove.map((partition) => remove(directory, partition, outExt)),
-    ...(toFix
-      ? [
-          save({
-            text: toFix,
-            partition: shortFilename,
-            extension: '',
-            directory: targetDirectory,
-          }),
-        ]
-      : []),
+    ...(toFix ? [save(toFix, targetDirectory, shortFilename, '')] : []),
   ]);
 };
