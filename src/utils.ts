@@ -1,6 +1,5 @@
 import { resolve } from 'path';
 import { accessSync, lstatSync, constants } from 'fs';
-import { readdir } from 'fs/promises';
 
 export const isPo = (filename: string) => filename.endsWith('.po');
 
@@ -29,18 +28,5 @@ export const validateDirectory = (dir: string, name: string) => {
       `Can't resolve the ${name}: '${directory}'.
       The specified path exists but is not a directory`
     );
-  }
-};
-
-export const readDir = async (
-  directory: string,
-  checkExtension: (filename: string) => boolean
-) => {
-  try {
-    const listing = await readdir(directory, { withFileTypes: true });
-
-    return listing.filter((item) => checkExtension(item.name));
-  } catch (e) {
-    return [];
   }
 };

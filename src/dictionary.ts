@@ -8,10 +8,9 @@ import {
   targetDir,
   targetDirectory,
 } from 'src/constants';
-import { render } from 'src/dictionary/output';
-import { save, remove } from 'src/dictionary/files';
-import { parse, compile } from 'src/dictionary/po';
-import { readDir } from 'src/utils';
+import { render } from 'src/output';
+import { save, remove, readDir } from 'src/files';
+import { parse, compile } from 'src/po';
 
 const parseLocale = (filename: string) =>
   filename.split('.')[0].replace(/[^\w]/g, '_');

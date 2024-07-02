@@ -13,7 +13,7 @@
     "po-extract": "../",
     "react": "^18.3.1",
     "react-intl": "^6.6.8",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "engines": {
     "node": "20.*",

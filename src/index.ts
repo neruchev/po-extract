@@ -5,8 +5,9 @@ import { watch, existsSync } from 'fs';
 
 import { handler } from 'src/dictionary';
 import { isWatch, targetDirectory } from 'src/constants';
-import { readDir, isPo } from 'src/utils';
+import { isPo } from 'src/utils';
 import { Locker } from 'src/Locker';
+import { readDir } from 'src/files';
 
 const locker = new Locker();
 

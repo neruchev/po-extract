@@ -1,7 +1,7 @@
 import { join } from 'path';
 
 import { existsSync } from 'fs';
-import { writeFile, readFile, unlink } from 'fs/promises';
+import { writeFile, readFile, unlink, readdir } from 'fs/promises';
 
 export const save = async (
   text: string,
@@ -34,4 +34,17 @@ export const remove = async (
   try {
     await unlink(filePath);
   } catch (e) {}
+};
+
+export const readDir = async (
+  directory: string,
+  checkExtension: (filename: string) => boolean
+) => {
+  try {
+    const listing = await readdir(directory, { withFileTypes: true });
+
+    return listing.filter((item) => checkExtension(item.name));
+  } catch (e) {
+    return [];
+  }
 };
