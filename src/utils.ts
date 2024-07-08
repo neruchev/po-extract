@@ -1,15 +1,17 @@
-const { resolve } = require('path');
-const { accessSync, lstatSync, constants } = require('fs');
+import { resolve } from 'path';
+import { accessSync, lstatSync, constants } from 'fs';
 
-const validateExtension = (ext) => {
-  const parts = ext.split('.');
+export const isPo = (filename: string) => filename.endsWith('.po');
+
+export const validateExtension = (extension: string) => {
+  const parts = extension.split('.');
 
   if (parts[0] || !/^[a-zA-Z]*$/.test(parts[1])) {
-    throw new Error(`Invalid extension: '${ext}'`);
+    throw new Error(`Invalid extension: '${extension}'`);
   }
 };
 
-const validateDirectory = (dir, name) => {
+export const validateDirectory = (dir: string, name: string) => {
   const directory = resolve(process.cwd(), dir);
 
   try {
@@ -27,12 +29,4 @@ const validateDirectory = (dir, name) => {
       The specified path exists but is not a directory`
     );
   }
-};
-
-const isPo = (filename) => filename.endsWith('.po');
-
-module.exports = {
-  validateExtension,
-  validateDirectory,
-  isPo,
 };

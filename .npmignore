@@ -1,0 +1,14 @@
+.github/*
+.husky/*
+.vscode/*
+example/*
+node_modules/*
+src/*
+typings/*
+.gitignore
+.prettierignore
+.prettierrc
+tsconfig.json
+tsup.config.ts
+yarn-error.log
+yarn.lock
