@@ -1,8 +1,8 @@
-const { format, resolveConfig } = require('prettier');
+import { format, resolveConfig, Options } from 'prettier';
 
-let prettierOptions = null;
+let prettierOptions: Options | null = null;
 
-module.exports = async (text) => {
+export const prettify = async (text: string) => {
   if (!prettierOptions) {
     prettierOptions = await resolveConfig(process.cwd());
   }

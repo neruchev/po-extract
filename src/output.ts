@@ -1,6 +1,10 @@
-const prettify = require('./prettify');
+import { prettify } from 'src/prettier';
 
-const isWithBreak = (partition, prev, curr) => {
+const isWithBreak = (
+  partition: string,
+  prev: string | undefined,
+  curr: string
+) => {
   if (!prev) {
     return true;
   }
@@ -15,7 +19,7 @@ const isWithBreak = (partition, prev, curr) => {
   );
 };
 
-const renderPartitions = (list, current) => {
+const renderPartitions = (list: string[], current: string) => {
   if (current !== '') {
     return { spreads: '', imports: '' };
   }
@@ -30,17 +34,34 @@ const renderPartitions = (list, current) => {
   };
 };
 
-module.exports = async ({ locale, partition, strings, source, partitions }) => {
+export const render = async ({
+  locale,
+  partition,
+  strings,
+  source,
+  partitions,
+}: {
+  locale: string;
+  partition: string;
+  strings: Record<string, { msgstr: string[] }>;
+  source: string;
+  partitions: string[];
+}) => {
   const keys = Object.keys(strings);
 
-  const renderItem = (key, i) => {
-    const value = strings[key].msgstr[0];
-    const withBreak = isWithBreak(partition, i ? keys[i - 1] : undefined, key);
+  const rendered = keys
+    .map((key, i) => {
+      const value = strings[key].msgstr[0];
+      const withBreak = isWithBreak(
+        partition,
+        i ? keys[i - 1] : undefined,
+        key
+      );
 
-    return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, "\\'")}',`;
-  };
+      return `${withBreak ? '\n' : ''}'${key}': '${value.replace(/'/g, "\\'")}',`;
+    })
+    .join('\n');
 
-  const rendered = keys.map(renderItem).join('\n');
   const { spreads, imports } = renderPartitions(partitions, partition);
 
   const disclaimer = `
@@ -54,8 +75,5 @@ module.exports = async ({ locale, partition, strings, source, partitions }) => {
     `${disclaimer}\n${imports}export const ${name} = {${spreads} ${rendered}};`
   );
 
-  return {
-    text,
-    partition,
-  };
+  return { text, partition };
 };

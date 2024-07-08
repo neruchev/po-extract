@@ -1,6 +1,6 @@
 {
   "name": "po-extract",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "A CLI tool for creating `react-intl`-compatible dictionaries from gettext `.po`-files",
   "keywords": [
     "i18n",
@@ -10,7 +10,8 @@
     "po",
     "extract"
   ],
-  "main": "src",
+  "main": "./dist",
+  "homepage": "https://github.com/neruchev/po-extract#readme",
   "repository": "git@github.com:neruchev/po-extract.git",
   "bugs": {
     "url": "https://github.com/neruchev/po-extract/issues"
@@ -19,20 +20,26 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prettier": "prettier --check ."
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "typecheck": "tsc",
+    "prettier": "prettier --check .",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "gettext-parser": "^5.1.2",
-    "prettier": "^2",
+    "prettier": "*",
     "yargs": "^17"
   },
-  "bin": {
-    "po-extract": "src/index.js"
+  "devDependencies": {
+    "@types/gettext-parser": "^4.0.4",
+    "@types/yargs": "^17.0.32",
+    "gettext-parser": "^8.0.0",
+    "husky": "^9.0.11",
+    "pretty-quick": "^4.0.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3"
   },
-  "files": [
-    "src"
-  ],
-  "engines": {
-    "node": ">=8.0.0"
+  "bin": {
+    "po-extract": "dist/index.js"
   }
 }
