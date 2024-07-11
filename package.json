@@ -18,7 +18,6 @@
   },
   "author": "Kirill Neruchev <kirill@neruchev.com>",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "build": "tsup",
     "watch": "tsup --watch",
@@ -39,7 +38,5 @@
     "tsup": "^8.1.0",
     "typescript": "^5.5.3"
   },
-  "bin": {
-    "po-extract": "dist/index.js"
-  }
+  "bin": "dist/index.js"
 }
