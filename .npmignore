@@ -1,6 +1,7 @@
 .github/*
 .husky/*
 .vscode/*
+.yarn/*
 example/*
 node_modules/*
 src/*
