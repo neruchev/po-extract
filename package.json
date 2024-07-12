@@ -39,5 +39,5 @@
     "typescript": "^5.5.3"
   },
   "bin": "dist/index.js",
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.3.1"
 }
