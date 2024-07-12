@@ -1,10 +1,3 @@
-/dist
-node_modules
-
-.DS_Store
-
-.idea
-
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -12,7 +5,3 @@ node_modules
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
