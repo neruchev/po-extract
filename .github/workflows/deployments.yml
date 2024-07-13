@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - "#11"
 
 jobs:
   deployment:
@@ -29,6 +30,14 @@ jobs:
       - name: Build package
         run: yarn run build
 
-      - uses: JS-DevTools/npm-publish@v1
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v3
+        id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create tag
+        uses: rickstaa/action-create-tag@v1
+        id: tag_create
+        with:
+          tag: ${${{ steps.publish.outputs.id }}#*@}
