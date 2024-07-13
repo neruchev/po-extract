@@ -46,3 +46,6 @@ jobs:
         uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.get_version.outputs.fragment }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
