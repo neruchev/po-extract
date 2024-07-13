@@ -49,3 +49,8 @@ jobs:
 
       - name: Create release
         uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.fragment }}
+          generate_release_notes: true
+          append_body: true
+          make_latest: 'true'
