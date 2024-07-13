@@ -36,9 +36,13 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
+      - name: Get package version
+        id: get_version
+        env:
+          VERSION: ${{ steps.publish.outputs.id }}
+        run: echo "::set-output name=fragment::${VERSION##*@}"
+
       - name: Create tag
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: ${{ env.PACKAGE_VERSION }}
-        env:
-          PACKAGE_VERSION: ${${{ steps.publish.outputs.id }}#*@}
+          tag: ${{ steps.get_version.outputs.fragment }}
