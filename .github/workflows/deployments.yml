@@ -40,7 +40,7 @@ jobs:
         id: get_version
         env:
           VERSION: ${{ steps.publish.outputs.id }}
-        run: echo "::set-output name=fragment::${VERSION##*@}"
+        run: echo "fragment=${VERSION##*@}" >> $GITHUB_OUTPUT
 
       - name: Create tag
         uses: rickstaa/action-create-tag@v1
