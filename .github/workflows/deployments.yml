@@ -29,6 +29,27 @@ jobs:
       - name: Build package
         run: yarn run build
 
-      - uses: JS-DevTools/npm-publish@v1
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v3
+        id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Get package version
+        id: get_version
+        env:
+          VERSION: ${{ steps.publish.outputs.id }}
+        run: echo "fragment=${VERSION##*@}" >> $GITHUB_OUTPUT
+
+      - name: Create tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.get_version.outputs.fragment }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.fragment }}
+          generate_release_notes: true
+          append_body: true
+          make_latest: 'true'
